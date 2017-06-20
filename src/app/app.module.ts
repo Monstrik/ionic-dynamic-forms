@@ -6,16 +6,30 @@ import { MyApp } from './app.component';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
+import { StartPage } from '../pages/start/start';
+import { FormsPage } from '../pages/forms/forms';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+
+import { FormsDataProvider } from '../providers/forms-data/forms-data';
+import { QuestionControlProvider } from '../providers/question-control/question-control';
+import { DynamicFormComponent } from '../components/dynamic-form/dynamic-form';
+import { DynamicFormQuestionComponent } from '../components/dynamic-form-question/dynamic-form-question';
 
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    StartPage,
+    FormsPage,
+    FormsPage,
+    DynamicFormComponent,
+    DynamicFormQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -26,12 +40,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    StartPage,
+    FormsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FormsDataProvider,
+    QuestionControlProvider
   ]
 })
 export class AppModule {}
