@@ -10,21 +10,17 @@ import {FormsDataProvider} from '../../providers/forms-data/forms-data';
   providers: [FormsDataProvider],
 })
 export class FormsPage {
-  questions: any[];
-  questions2: any[];
+  dynformdata: any[];
   provider: any;
-  text: string;
-  icons: string[];
+
 
 
   constructor(provider: FormsDataProvider, public navCtrl: NavController, public navParams: NavParams) {
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-      'american-football', 'boat', 'bluetooth', 'build'];
     this.provider = provider;
-    this.questions = this.provider.getQuestions(1);
-    this.questions2 = this.provider.getQuestions(2);
-    console.log('FormsPage this.questions=',this.questions);
-    console.log('FormsPage this.questions2=',this.questions2);
+    this.dynformdata = this.provider.getFormData();
+
+    console.log('FormsPage this.questions=',this.dynformdata);
+
   }
 
   getForms() {

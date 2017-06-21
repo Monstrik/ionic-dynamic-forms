@@ -1,8 +1,6 @@
 
 <div>
-
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-     
     <div *ngFor="let question of this.questions" class="form-row">
       <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
     </div>
@@ -16,4 +14,5 @@
   <div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}
   </div>
+
 </div>
