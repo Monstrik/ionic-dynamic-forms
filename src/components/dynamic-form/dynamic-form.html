@@ -1,36 +1,6 @@
-<ion-slides pager="true">
-  <ion-slide>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-label>Dispatch</ion-label>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <ion-list no-lines>
-            <ion-label>Call Location</ion-label>
-            <form (ngSubmit)="onSubmit()" [formGroup]="form">
-              <div *ngFor="let question of this.questions">
-                <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
-              </div>
-               
-              <div class="form-row">
-                <button type="submit" [disabled]="!form.valid">Save</button>
-              </div>
-              <div *ngIf="payLoad" class="form-row">
-                <strong>Saved the following values</strong><br>{{payLoad}}
-              </div>
-            </form>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-slides #dynamicFormSlider pager="true">
+  <ion-slide *ngFor="let page of this.data">
+    <dynamic-form-page [page]="page"></dynamic-form-page>
   </ion-slide>
-  <ion-slide>
-    <p>Slide 2</p>
-  </ion-slide>
-
 </ion-slides>
 

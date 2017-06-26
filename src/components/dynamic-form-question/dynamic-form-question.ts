@@ -14,7 +14,10 @@ export class DynamicFormQuestionComponent {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
   constructor() {
-    console.log('Hello DynamicFormQuestionComponent Component');
+    // console.log('Hello DynamicFormQuestionComponent Component');
+  }
+  update(){
+    console.log('update field');
   }
   get isValid() { return this.form.controls[this.question.key].valid; }
 }

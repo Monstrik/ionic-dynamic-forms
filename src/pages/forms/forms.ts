@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormsDataProvider} from '../../providers/forms-data/forms-data';
 
 
@@ -10,69 +10,19 @@ import {FormsDataProvider} from '../../providers/forms-data/forms-data';
   providers: [FormsDataProvider],
 })
 export class FormsPage {
-
-  @ViewChild('pcrFormSlider') pcrFormSlider: any;
-
-  submitAttempt: boolean = false;
-  pcr: any;
-
-  checked: boolean = true;
-
-  ionTitle: string;
-  dynformdata: any[];
+  data: any[];
   provider: any;
 
 
-  // public formBuilder: FormBuilder public utilities: Utilities) {
-  constructor(provider: FormsDataProvider, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,) {
+  constructor(provider: FormsDataProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.provider = provider;
-    this.dynformdata = this.provider.getFormData();
-    this.ionTitle = 'Patient Care Report';
-    console.log('FormsPage this.questions=',this.dynformdata);
-
+    this.data = this.provider.getFormData();
   }
 
-  // getForms() {
-  //
-  // }
+
 
   ionViewDidLoad() {
-    // this.getForms()
 
-  }
-
-  next(){
-      this.pcrFormSlider.slideNext();
-  }
-
-  prev(){
-         this.pcrFormSlider.slidePrev();
-  }
-
-  confirmDelete() {
-    let prompt = this.alertCtrl.create({
-      title: 'Confirm Delete',
-      message: 'Are you sure you want to delete this patient care report?',
-      buttons: [
-        {
-          text: 'Cancel'
-        },
-        {
-          text: 'Delete',
-          handler: data => {
-            // if (this.pcr != null) // if the PCR has not been submitted there is nothing to delete in the DB
-            //   this.pcrProvider.deletePCR(this.pcr)
-            //
-            // this.navCtrl.push(PCRList)
-          }
-        }
-      ]
-    });
-
-    prompt.present();
-  }
-
-  submit(){
   }
 
 }

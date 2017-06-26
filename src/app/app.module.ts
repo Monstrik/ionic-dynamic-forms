@@ -18,6 +18,8 @@ import { FormsDataProvider } from '../providers/forms-data/forms-data';
 import { QuestionControlProvider } from '../providers/question-control/question-control';
 import { DynamicFormComponent } from '../components/dynamic-form/dynamic-form';
 import { DynamicFormQuestionComponent } from '../components/dynamic-form-question/dynamic-form-question';
+import { DynamicFormSectionComponent } from '../components/dynamic-form-section/dynamic-form-section';
+import { DynamicFormPageComponent } from '../components/dynamic-form-page/dynamic-form-page';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { DynamicFormQuestionComponent } from '../components/dynamic-form-questio
     StartPage,
     FormsPage,
     DynamicFormComponent,
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent,
+    DynamicFormSectionComponent,
+    DynamicFormPageComponent
   ],
   imports: [
     BrowserModule,

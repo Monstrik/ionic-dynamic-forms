@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 //import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+
+import {DFPage} from '../../lib/df-controls/df-page';
+import {DFSection} from '../../lib/df-controls/df-section';
 import {DFDropDown} from '../../lib/df-controls/df-drop-down';
 import {QuestionBase} from '../../lib/question-base';
 import {DFDatebox} from '../../lib/df-controls/df-datebox';
@@ -17,6 +20,8 @@ export class FormsDataProvider {
   constructor() {
     const fields = [
       {
+        dbId :'',
+        multiId : '',
         type: "text",
         name: "firstname",
         label: "Name",
@@ -51,6 +56,7 @@ export class FormsDataProvider {
         data: ""
       },
       {
+        dbId: '983458345908',
         type: "select",
         name: "teacher_id",
         label: "Teacher",
@@ -84,14 +90,32 @@ export class FormsDataProvider {
       }
     ];
     const sections = [{
-      name: "Section 1",
+      title: "Section 1",
+      description: '',
+      type: 'regular',
+      order: 1,
+      fields: fields
+    }, {
+      title: "Section 2",
+      description: '',
+      type: 'regular',
+      order: 2,
       fields: fields
     }];
-    const page = [{
-      name: "Patient Care Report",
+    const pages = [{
+      title: "Patient Care Report",
+      description: '',
+      type: 'regular',
+      order: 1,
+      sections: sections
+    }, {
+      title: "Dispatch",
+      description: '',
+      type: 'regular',
+      order: 2,
       sections: sections
     }];
-    this.formPage = page;
+    this.formPage = pages;
   }
 
   // constructor(public http: Http) {
@@ -102,17 +126,16 @@ export class FormsDataProvider {
 
 
   getFormData() {
-
-    let formDynData: QuestionBase<any>[] = [];
+    let pages: DFPage[] = [];
     this.formPage.forEach((page) => {
-      console.log(page.name)
+      let pageSections: DFSection[] = [];
       page.sections.forEach((section) => {
-        console.log(section.name)
+        let sectionQuestions: QuestionBase<any>[] = [];
         section.fields.forEach((field) => {
           switch (field.type) {
             case 'text': {
-              console.log('c DFTextbox for ' + field.label);
-              formDynData.push(new DFTextbox({
+              // console.log('c DFTextbox for ' + field.label);
+              sectionQuestions.push(new DFTextbox({
                 key: field.name,
                 label: field.label,
                 value: field.data,
@@ -122,8 +145,8 @@ export class FormsDataProvider {
               break;
             }
             case 'email': {
-              console.log('c DFTextbox email for ' + field.label);
-              formDynData.push(new DFTextbox({
+              // console.log('c DFTextbox email for ' + field.label);
+              sectionQuestions.push(new DFTextbox({
                 key: field.name,
                 type: 'email',
                 label: field.label,
@@ -133,10 +156,9 @@ export class FormsDataProvider {
               }));
               break;
             }
-            case 'date':
-            {
-              console.log('c DFTextbox date for ' + field.label);
-              formDynData.push(new DFDatebox({
+            case 'date': {
+              // console.log('c DFTextbox date for ' + field.label);
+              sectionQuestions.push(new DFDatebox({
                 key: field.name,
                 type: 'date',
                 label: field.label,
@@ -149,19 +171,19 @@ export class FormsDataProvider {
 
 
             case 'password': {
-              console.log('c DFPasswordbox for ' + field.label);
+              // console.log('c DFPasswordbox for ' + field.label);
               break;
             }
 
             case 'select': {
-              console.log('c DFDropDown for ' + field.label);
-              console.log('with options  ' + field.options);
+              // console.log('c DFDropDown for ' + field.label);
+              // console.log('with options  ' + field.options);
               let options = [];
               field.options.forEach((option) => {
                 options.push({key: option.value, value: option.label})
               })
 
-              formDynData.push(
+              sectionQuestions.push(
                 new DFDropDown({
                   key: field.name,
                   label: field.label,
@@ -174,90 +196,38 @@ export class FormsDataProvider {
             }
 
             case 'checkbox': {
-              console.log('c DFCheckbox for ' + field.label);
+              // console.log('c DFCheckbox for ' + field.label);
               break;
             }
 
             case 'radio': {
-              console.log('c DFRadio for ' + field.label);
+              // console.log('c DFRadio for ' + field.label);
               break;
             }
 
             default: {
-              console.log('c default DFTextbox for ' + field.label);
+              // console.log('c default DFTextbox for ' + field.label);
             }
 
           }
         })
-      })
+        pageSections.push(new DFSection({
+          title: section.title,
+          description: section.description,
+          type: section.type,
+          order: section.order,
+          questions: sectionQuestions.sort((a, b) => a.order - b.order)
+        }));
+      });
+      pages.push(new DFPage({
+        title: page.title,
+        description: page.description,
+        type: page.type,
+        order: page.order,
+        sections: pageSections.sort((a, b) => a.order - b.order)
+      }))
     });
-
-    return formDynData.sort((a, b) => a.order - b.order);
-    // const formData: QuestionBase<any>[] = [
-    //   new DFTextbox({
-    //     key: 'login',
-    //     label: 'Login',
-    //     // value: 'CoolLogin',
-    //     // required: true,
-    //     order: 0
-    //   }),
-    //   new DFTextbox({
-    //     key: 'firstName',
-    //     label: 'First Name',
-    //     order: 1
-    //   }),
-    //   new DFTextbox({
-    //     key: 'lastName',
-    //     label: 'Last Name',
-    //     order: 2
-    //   }),
-    //   new DFDatebox({
-    //     key: 'birthDay',
-    //     label: 'Birthday',
-    //     // required: true,
-    //     type: 'date',
-    //     order: 3
-    //   }),
-    //   new DFTextbox({
-    //     key: 'emailAddress',
-    //     label: 'Email',
-    //     type: 'email',
-    //     order: 5
-    //   }),
-    //   new DFDropDown({
-    //     key: 'brave',
-    //     label: 'Bravery Rating',
-    //     options: [
-    //       {key: 'solid', value: 'Solid'},
-    //       {key: 'great', value: 'Great'},
-    //       {key: 'good', value: 'Good'},
-    //       {key: 'unproven', value: 'Unproven'}
-    //     ],
-    //     order: 10
-    //   }),
-    //   new DFTextbox({
-    //     key: 'spouseName',
-    //     label: 'Spouse name',
-    //     order: 100
-    //   }),
-    //   new DFDatebox({
-    //     key: 'sbirthDay',
-    //     label: 'Spouse Birthday',
-    //     // required: true,
-    //     type: 'date',
-    //     order: 300
-    //   }),
-    //   new DFDropDown({
-    //     key: 'brave',
-    //     label: 'Bravery Rating',
-    //     options: [
-    //       {key: 'solid', value: 'Solid'},
-    //       {key: 'great', value: 'Great'},
-    //       {key: 'good', value: 'Good'},
-    //       {key: 'unproven', value: 'Unproven'}
-    //     ],
-    //     order: 1000
-    //   })
-    // ];
+    // console.log(pages);
+    return pages;
   }
 }

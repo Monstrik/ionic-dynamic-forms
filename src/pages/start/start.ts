@@ -18,7 +18,7 @@ export class StartPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StartPage');
+    // console.log('ionViewDidLoad StartPage');
   }
 
 }

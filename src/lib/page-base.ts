@@ -1,25 +1,26 @@
-import {QuestionBase} from './question-base';
+import {SectionBase} from './section-base';
 
-export class SectionBase<T> {
+export class PageBase<T> {
   value: T;
   title: string;
   description: string;
   order: number;
   type: string;
-  questions: QuestionBase<any>[] = [];
+  sections: SectionBase<any>[] = [];
+
   constructor(options: {
     value?: T,
     title?: string,
     description?: string,
     order?: number,
     type?: string,
-    questions?: QuestionBase<any>[]
+    sections?: SectionBase<any>[]
   } = {}) {
     this.value = options.value;
     this.title = options.title || '';
     this.description = options.description || '';
     this.order = options.order === undefined ? 1 : options.order;
     this.type = options.type || '';
-    this.questions = options.questions;
+    this.sections = options.sections;
   }
 }

@@ -1,0 +1,17 @@
+<!-- Generated template for the DynamicFormSectionComponent component -->
+
+
+<ion-label>{{section.title}}</ion-label>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div *ngFor="let question of section.questions">
+        <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
+      </div>
+       
+      <div class="form-row">
+        <button type="submit" [disabled]="!form.valid">Save</button>
+      </div>
+      <div *ngIf="payLoad" class="form-row">
+        <strong>Saved the following values</strong><br>{{payLoad}}
+      </div>
+    </form>
+

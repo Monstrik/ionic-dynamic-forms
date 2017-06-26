@@ -7,7 +7,7 @@
 
         <ion-item *ngSwitchCase="'textbox'">
             <ion-input [formControlName]="question.key" [id]="question.key" [type]="question.htmlType">
-                <!--(change)=updateCallLocationFacility()-->
+                (change)=update('question.key')
                 <!--[class.invalid]="!dispatchForm.controls.callLocationFacility.valid && (dispatchForm.controls.callLocationFacility.dirty || submitAttempt)">-->
             </ion-input>
         </ion-item>

@@ -1,0 +1,17 @@
+<!-- Generated template for the DynamicFormPageComponent component -->
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-label>{{page.title}}</ion-label>
+
+      <ion-list *ngFor="let section of page.sections">
+        <dynamic-form-section [section]="section"></dynamic-form-section>
+      </ion-list>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
