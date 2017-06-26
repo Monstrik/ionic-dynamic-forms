@@ -88,7 +88,7 @@ export class FormsDataProvider {
       fields: fields
     }];
     const page = [{
-      name: "Page 1",
+      name: "Patient Care Report",
       sections: sections
     }];
     this.formPage = page;

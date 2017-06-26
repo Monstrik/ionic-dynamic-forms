@@ -27,7 +27,6 @@ import { DynamicFormQuestionComponent } from '../components/dynamic-form-questio
     ListPage,
     StartPage,
     FormsPage,
-    FormsPage,
     DynamicFormComponent,
     DynamicFormQuestionComponent
   ],

@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>formsPage</ion-title>
-  </ion-navbar>
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{this.ionTitle}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-left (click)="confirmDelete()" color="primary"><ion-icon name="trash"></ion-icon> </button>
+      <button ion-button icon-left (click)="submit()" color="primary"><ion-icon name="cloud-upload"></ion-icon> </button>
+      <button ion-button icon-left (click)="prev()" color="primary"><ion-icon name="arrow-back"></ion-icon> </button>
+      <button ion-button icon-right (click)="next()" color="primary"> <ion-icon name="arrow-forward"></ion-icon></button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="pcr-form">
+  <!--<ion-scroll scrollY="true" style="height: 100%">-->
   <dynamic-form [questions]="this.dynformdata"></dynamic-form>
+  <!--</ion-scroll>-->
 </ion-content>
+

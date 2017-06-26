@@ -1,26 +1,25 @@
 <div [formGroup]="form">
-  <label [attr.for]="question.key">{{question.label}}</label>
-   
-  <div [ngSwitch]="question.controlType">
-     
-    <input *ngSwitchCase="'textbox'"
-           [formControlName]="question.key"
-           [id]="question.key"
-           [type]="question.htmlType">
+    <ion-label floating [attr.for]="question.key">{{question.label}}</ion-label>
+    <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
+    <div class="errorMessage" *ngIf="!isValid">*</div>
 
-    <input *ngSwitchCase="'datebox'"
-           [formControlName]="question.key"
-           [id]="question.key"
-           [type]="question.htmlType">
-     
-    <select *ngSwitchCase="'dropdown'"
-            [formControlName]="question.key">
-      [id]="question.key"
-      <option *ngFor="let opt of question.options"
-              [value]="opt.key">{{opt.value}}</option>
-    </select>
-     
-  </div>
-   
-  <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+    <div [ngSwitch]="question.controlType">
+
+        <ion-item *ngSwitchCase="'textbox'">
+            <ion-input [formControlName]="question.key" [id]="question.key" [type]="question.htmlType">
+                <!--(change)=updateCallLocationFacility()-->
+                <!--[class.invalid]="!dispatchForm.controls.callLocationFacility.valid && (dispatchForm.controls.callLocationFacility.dirty || submitAttempt)">-->
+            </ion-input>
+        </ion-item>
+        <ion-item *ngSwitchCase="'datebox'">
+            <ion-datetime [formControlName]="question.key" [id]="question.key" displayFormat="h:mm a MMM D, YYYY" pickerFormat="h:mm a MMM, D YYYY" min="2016">
+
+            </ion-datetime>
+        </ion-item>
+        <ion-item *ngSwitchCase="'dropdown'">
+            <ion-select [formControlName]="question.key" [id]="question.key">
+                <ion-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</ion-option>
+            </ion-select>
+        </ion-item>
+    </div>
 </div>
