@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>DynForms MultiPage</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-scroll class="my-scroll" scrollY="true" style="height: 100%">
+    <dynamic-form *ngIf="pages" [data]="pages"></dynamic-form>
+  </ion-scroll>
+</ion-content>
