@@ -7,6 +7,7 @@ import {DFTextbox} from './df-controls/df-textbox';
 import {DFButton} from './df-controls/df-button';
 import {DFToggle} from './df-controls/df-toggle';
 import {SectionBase} from "./section-base";
+import {PageBase} from "./page-base";
 
 
 export class Translator {
@@ -93,20 +94,48 @@ export class Translator {
     return sectionModel;
   }
 
-  translateToDFSection(json: any): SectionBase<any> {
+  CreateDFPage(data: any): PageBase<any>{
+    let pageSections: SectionBase<any>[]=[];
+    console.log('Page have sections:', data.sections.length)
+    data.sections.forEach((section) => {
+      pageSections.push(this.CreateDFSection(section));
+    });
+    return new DFPage({
+      title: data.title,
+      description: data.description,
+      type: data.type,
+      order: data.order,
+      sections: pageSections
+    });
+
+  }
+
+  CreateDFPages(data: any): PageBase<any>[]{
+    let pages: PageBase<any>[]=[];
+    data.forEach((page) => {
+      pages.push(this.CreateDFPage(page));
+    });
+    return pages;
+  }
+
+
+
+  CreateDFSection(data: any): SectionBase<any> {
     let sectionQuestions: QuestionBase<any>[] = [];
-    json.fields.forEach((field) => {
+    console.log('Section have fields:', data)
+    data.fields.forEach((field) => {
       sectionQuestions.push(this.createDFControll(field))
     });
     return new DFSection({
-      title: json.title,
-      description: json.description,
-      type: json.type,
-      order: json.order,
+      title: data.title,
+      description: data.description,
+      type: data.type,
+      order: data.order,
       questions: sectionQuestions.sort((a, b) => a.order - b.order)
     });
 
   }
+
 
   translateDBtoSection(data: string): SectionBase<any> {
 

@@ -9,7 +9,11 @@ import {ItemDetailsPage} from '../pages/item-details/item-details';
 import {ListPage} from '../pages/list/list';
 import {StartPage} from '../pages/start/start';
 import {FormsPage} from '../pages/forms/forms';
+import {FormPagePage} from '../pages/form-page/form-page';
+import {FormPagesPage} from "../pages/form-pages/form-pages";
 import {FormSectionPage} from '../pages/form-section/form-section';
+import {GridFormWithSectionsPage} from '../pages/grid-form-with-sections/grid-form-with-sections';
+
 
 
 import {StatusBar} from '@ionic-native/status-bar';
@@ -33,6 +37,9 @@ import {FormServiceProvider} from '../providers/form-service/form-service';
     StartPage,
     FormsPage,
     FormSectionPage,
+    FormPagePage,
+    FormPagesPage,
+    GridFormWithSectionsPage,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
     DynamicFormSectionComponent,
@@ -51,7 +58,10 @@ import {FormServiceProvider} from '../providers/form-service/form-service';
     ListPage,
     StartPage,
     FormsPage,
-    FormSectionPage
+    FormSectionPage,
+    FormPagePage,
+    FormPagesPage,
+    GridFormWithSectionsPage
   ],
   providers: [
     StatusBar,

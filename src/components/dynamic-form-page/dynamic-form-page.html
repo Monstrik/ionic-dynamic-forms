@@ -2,12 +2,13 @@
 <ion-grid>
   <ion-row>
     <ion-col>
-      <ion-label>{{page.title}}</ion-label>
-
+      <h2>{{page.title}} <small>({{page.type}})</small></h2>
       <ion-list *ngFor="let section of page.sections">
         <dynamic-form-section [section]="section"></dynamic-form-section>
+        <ion-item-divider color="danger">
+          &nbsp;
+        </ion-item-divider>
       </ion-list>
-
     </ion-col>
   </ion-row>
 </ion-grid>

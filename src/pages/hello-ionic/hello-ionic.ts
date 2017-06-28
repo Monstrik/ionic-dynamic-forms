@@ -4,8 +4,13 @@ import {NavController, NavParams} from 'ionic-angular';
 
 import {StartPage} from '../start/start';
 import {FormsPage} from '../forms/forms';
+
 import {FormSectionPage} from '../form-section/form-section';
+import {GridFormWithSectionsPage} from '../grid-form-with-sections/grid-form-with-sections';
+
+import {FormPagePage} from '../form-page/form-page';
 import {FormServiceProvider} from '../../providers/form-service/form-service';
+import {FormPagesPage} from "../form-pages/form-pages";
 @Component({
   selector: 'page-hello-ionic',
   templateUrl: 'hello-ionic.html',
@@ -31,9 +36,32 @@ export class HelloIonicPage {
       //item: item
     });
   }
+  showDynamicForm(type:string){
+    switch (type){
+      case 'section':
+        this.navCtrl.push(FormSectionPage);
+        break;
+      case 'grid':
+        this.navCtrl.push(GridFormWithSectionsPage);
+        break;
+      case 'page':
+        this.navCtrl.push(FormPagePage);
+        break;
+      case 'pages':
+        this.navCtrl.push(FormPagesPage);
+        break;
+      default:
+        this.navCtrl.push(GridFormWithSectionsPage);
+        break;
+
+    }
+
+  }
+
   showFormSection() {
     this.navCtrl.push(FormSectionPage);
   }
+
 
   getData() {
     this.formServiceProvider.load()

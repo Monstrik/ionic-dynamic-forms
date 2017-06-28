@@ -20,7 +20,7 @@
     </ion-select>
   </ion-item>
   <ion-item *ngSwitchCase="'button'" no-line>
-    <button ion-button [name]="question.key" [id]="question.key" color="secondary" (click)=update()>
+    <button ion-button [name]="question.key" [id]="question.key" (click)=update()>
       {{question.label}}
     </button>
   </ion-item>

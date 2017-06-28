@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <h4>{{section.title}}</h4>
   <span *ngFor="let question of section.questions">
     <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
   </span>

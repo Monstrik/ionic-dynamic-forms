@@ -16,10 +16,6 @@ export class DynamicFormComponent implements OnInit {
 
   @ViewChild('DynamicFormSlider') dynamicFormSlider: any;
   @Input() data: any[] = [];
-  // form: FormGroup;
-  // payLoad = '';
-
-  //constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public navParams: NavParams, public pcrProvider: PCRProvider, public alertCtrl: AlertController, public datastore: Datastore, public utilities: Utilities) {
 
   constructor( public navCtrl: NavController, public alertCtrl: AlertController) {
   }
@@ -31,49 +27,48 @@ export class DynamicFormComponent implements OnInit {
   ngOnInit() {
     if (this.data) {
       console.log('data presented');
-     // this.form = this.qcp.toFormGroup(this.data);
     }
     else {
       console.log('data not presented');
     }
   }
 
-  onSubmit() {
-    //this.payLoad = JSON.stringify(this.form.value);
-  }
-  next(){
-    this.dynamicFormSlider.slideNext();
-  }
-
-  prev(){
-    this.dynamicFormSlider.slidePrev();
-  }
-
-  confirmDelete() {
-    let prompt = this.alertCtrl.create({
-      title: 'Confirm Delete',
-      message: 'Are you sure you want to delete this patient care report?',
-      buttons: [
-        {
-          text: 'Cancel'
-        },
-        {
-          text: 'Delete',
-          handler: data => {
-            // if (this.pcr != null) // if the PCR has not been submitted there is nothing to delete in the DB
-            //   this.pcrProvider.deletePCR(this.pcr)
-            //
-            // this.navCtrl.push(PCRList)
-          }
-        }
-      ]
-    });
-
-    prompt.present();
-  }
-
-  submit(){
-  }
+  // onSubmit() {
+  //   //this.payLoad = JSON.stringify(this.form.value);
+  // }
+  // next(){
+  //   this.dynamicFormSlider.slideNext();
+  // }
+  //
+  // prev(){
+  //   this.dynamicFormSlider.slidePrev();
+  // }
+  //
+  // confirmDelete() {
+  //   let prompt = this.alertCtrl.create({
+  //     title: 'Confirm Delete',
+  //     message: 'Are you sure you want to delete this patient care report?',
+  //     buttons: [
+  //       {
+  //         text: 'Cancel'
+  //       },
+  //       {
+  //         text: 'Delete',
+  //         handler: data => {
+  //           // if (this.pcr != null) // if the PCR has not been submitted there is nothing to delete in the DB
+  //           //   this.pcrProvider.deletePCR(this.pcr)
+  //           //
+  //           // this.navCtrl.push(PCRList)
+  //         }
+  //       }
+  //     ]
+  //   });
+  //
+  //   prompt.present();
+  // }
+  //
+  // submit(){
+  // }
 
 }
 

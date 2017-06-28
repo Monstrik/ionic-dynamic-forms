@@ -1,3 +1,4 @@
+
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormServiceProvider} from '../../providers/form-service/form-service';
@@ -5,12 +6,12 @@ import {Translator} from '../../lib/df-translate';
 
 @IonicPage()
 @Component({
-  selector: 'page-form-section',
-  templateUrl: 'form-section.html',
+  selector: 'page-grid-form-with-sections',
+  templateUrl: 'grid-form-with-sections.html',
   providers: [FormServiceProvider, Translator],
 })
+export class GridFormWithSectionsPage implements OnInit {
 
-export class FormSectionPage implements OnInit {
   section: any;
 
   constructor(public provider: FormServiceProvider,
@@ -24,7 +25,8 @@ export class FormSectionPage implements OnInit {
     // console.log('form', form)
     this.section = form;
   }
-}
 
+
+}
 
 

@@ -32,7 +32,7 @@ export class FormsPage implements OnInit {
 
     // this.provider.loadFakeSection()
     //   .then(data => {
-    //     const form=this.translator.translateToDFSection(data);
+    //     const form=this.translator.CreateDFSection(data);
     //     console.log(form)
     //     this.section = form
     //   });

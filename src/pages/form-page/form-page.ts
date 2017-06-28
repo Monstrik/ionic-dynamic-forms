@@ -1,3 +1,5 @@
+
+
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormServiceProvider} from '../../providers/form-service/form-service';
@@ -5,26 +7,23 @@ import {Translator} from '../../lib/df-translate';
 
 @IonicPage()
 @Component({
-  selector: 'page-form-section',
-  templateUrl: 'form-section.html',
+  selector: 'page-form-page',
+  templateUrl: 'form-page.html',
   providers: [FormServiceProvider, Translator],
 })
 
-export class FormSectionPage implements OnInit {
-  section: any;
+export class FormPagePage implements OnInit {
+  page: any;
 
   constructor(public provider: FormServiceProvider,
               public translator: Translator) {
   }
 
   ngOnInit() {
-    const data = this.provider.loadFakeSection();
-    // console.log('data', data)
-    const form = this.translator.CreateDFSection(data);
-    // console.log('form', form)
-    this.section = form;
+    const data = this.provider.loadFakePage();
+    console.log(data);
+    const page = this.translator.CreateDFPage(data);
+    console.log(page);
+    this.page = page;
   }
 }
-
-
-

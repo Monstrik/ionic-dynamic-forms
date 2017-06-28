@@ -1,24 +1,11 @@
-<ion-scroll class="my-scroll" scrollY="true" style="height: 100%">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <dynamic-form-section *ngIf="this.section" [section]="this.section"></dynamic-form-section>
-      </ion-col>
-      <ion-col>
-        <dynamic-form-section *ngIf="this.section" [section]="this.section"></dynamic-form-section>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <dynamic-form-section *ngIf="this.section" [section]="this.section"></dynamic-form-section>
-      </ion-col>
-      <ion-col>
-        <dynamic-form-section *ngIf="this.section" [section]="this.section"></dynamic-form-section>
-      </ion-col>
-      <ion-col>
-        <dynamic-form-section *ngIf="this.section" [section]="this.section"></dynamic-form-section>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-header>
 
+  <ion-navbar>
+    <ion-title>Single Section </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-scroll class="my-scroll" scrollY="true" style="height: 100%">
+  <dynamic-form-section *ngIf="section" [section]="section"></dynamic-form-section>
 </ion-scroll>

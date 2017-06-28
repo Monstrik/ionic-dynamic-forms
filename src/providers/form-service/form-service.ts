@@ -34,8 +34,90 @@ export class FormServiceProvider {
     });
   }
 
+  loadFakeFields(): any {
+    return [
+      {
+        dbId: '123465',
+        type: "button",
+        name: "CoolButton1",
+        label: "CoolButton",
+        required: true,
+        order: 1
+      },
+      {
+        dbId: '12345',
+        type: "text",
+        name: "firstname",
+        label: "Name",
+        required: true,
+        order: 1,
+        data: ""
+      },
+      {
+        dbId: '1234445345',
+        type: "toggle",
+        name: "firstname",
+        label: "Enabled",
+        order: 1,
+        data: ""
+      },
+      {
+        dbId: '2222',
+        type: "date",
+        name: "bday",
+        label: "Birthday",
+        required: true,
+        data: ""
+      },
+      {
+        dbId: '3333',
+        type: "email",
+        name: "emailUser",
+        label: "Email",
+        required: true,
+        data: ""
+      },
+      {
+        dbId: '4444',
+        type: "password",
+        name: "pass",
+        label: "Password",
+        min: 6,
+        max: 20,
+        required: true,
+        order: 3,
+        data: ""
+      },
+      {
+        dbId: '983458345908',
+        type: "select",
+        name: "teacher_id",
+        label: "Teacher",
+        options: [
+          {id: 'Mark', name: "Mark"},
+          {id: 'Claire', name: "Claire"},
+          {id: 'Daniel', name: "Daniel"},
+          {id: 'Gary', name: "Gary"}
+        ],
+        required: true,
+        order: 4,
+        data: ""
+      },
+      {
+        dbId: '66666',
+        type: "select",
+        name: "color_id",
+        label: "Colors",
+        options: [{id: 1, name: "orange"}, {id: 2, name: "pink"}, {id: 3, name: "gray"}, {id: 4, name: "cyan"}],
+        required: true,
+        order: 60,
+        multiple: true,
+        data: ""
+      }
+    ];
+  }
 
-  loadFakeSectionJson():any {
+  loadFakeSection(): any {
     const fields = [
       {
         dbId: '123465',
@@ -117,17 +199,30 @@ export class FormServiceProvider {
       }
     ];
     const section = {
-      title: "Section 1",
+      title: "Section Name",
       description: '',
       type: 'regular',
       order: 1,
-      fields: fields
+      fields: this.loadFakeFields()
     };
     return section;
   }
 
-  // loadFakePage():any {
-  //   this.loadFakeSection()
-  //   return Promise.resolve();
-  // }
+  loadFakeSections(): any {
+    return [this.loadFakeSection(), this.loadFakeSection(), this.loadFakeSection()];
+  }
+
+  loadFakePage(): any {
+    return {
+      title: "Page Name",
+      description: '',
+      type: 'regular',
+      order: 1,
+      sections: this.loadFakeSections()
+    };
+  }
+
+  loadFakePages(): any[] {
+    return [this.loadFakePage(), this.loadFakePage(), this.loadFakePage(), this.loadFakePage()];
+  }
 }
