@@ -4,24 +4,51 @@ import {NavController, NavParams} from 'ionic-angular';
 
 import {StartPage} from '../start/start';
 import {FormsPage} from '../forms/forms';
-
+import {FormSectionPage} from '../form-section/form-section';
+import {FormServiceProvider} from '../../providers/form-service/form-service';
 @Component({
   selector: 'page-hello-ionic',
-  templateUrl: 'hello-ionic.html'
+  templateUrl: 'hello-ionic.html',
+  providers: [FormServiceProvider]
 })
 export class HelloIonicPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  public data: any;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public alertCtrl: AlertController,
+              public formServiceProvider: FormServiceProvider) {
   }
 
-  showForms(){
+  showForms() {
     this.navCtrl.push(FormsPage, {
       //item: item
     });
   }
+
   showStart() {
     this.navCtrl.push(StartPage, {
       //item: item
     });
+  }
+  showFormSection() {
+    this.navCtrl.push(FormSectionPage);
+  }
+
+  getData() {
+    this.formServiceProvider.load()
+      .then(data => {
+        this.data = data;
+        let alert = this.alertCtrl.create({
+          title: 'Got Data',
+          subTitle: this.data,
+          buttons: ['OK']
+        });
+        alert.present();
+
+      });
+
+
   }
 
   showAlert(msg) {

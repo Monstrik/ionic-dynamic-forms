@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {PageBase} from '../../lib/page-base';
+import {concatAll} from "rxjs/operator/concatAll";
 // import {QuestionControlProvider} from '../../providers/question-control/question-control';
 
 
@@ -14,7 +15,7 @@ import {PageBase} from '../../lib/page-base';
 export class DynamicFormComponent implements OnInit {
 
   @ViewChild('DynamicFormSlider') dynamicFormSlider: any;
-  @Input() data: PageBase<any>[] = [];
+  @Input() data: any[] = [];
   // form: FormGroup;
   // payLoad = '';
 
@@ -29,9 +30,11 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit() {
     if (this.data) {
-      var pageCount = this.data.length;
-      // console.log('pageCount=', pageCount);
-      //this.form = this.qcp.toFormGroup(this.data);
+      console.log('data presented');
+     // this.form = this.qcp.toFormGroup(this.data);
+    }
+    else {
+      console.log('data not presented');
     }
   }
 

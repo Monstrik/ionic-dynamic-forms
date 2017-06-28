@@ -1,28 +1,44 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {FormsDataProvider} from '../../providers/forms-data/forms-data';
-
+import {FormServiceProvider} from '../../providers/form-service/form-service';
+import {Translator} from '../../lib/df-translate';
 
 @IonicPage()
 @Component({
   selector: 'page-forms',
   templateUrl: 'forms.html',
-  providers: [FormsDataProvider],
+  providers: [FormServiceProvider, Translator],
 })
-export class FormsPage {
+
+export class FormsPage implements OnInit {
   data: any[];
-  provider: any;
+  section: any;
+  isDataAvailable: boolean = false;
 
-
-  constructor(provider: FormsDataProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public provider: FormServiceProvider,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              public translator: Translator) {
     this.provider = provider;
-    this.data = this.provider.getFormData();
   }
 
+  ngOnInit() {
 
+    this.provider.load()
+      .then(data => {
+        this.section = this.translator.translateDBtoSection(data);
+
+      });
+
+    // this.provider.loadFakeSection()
+    //   .then(data => {
+    //     const form=this.translator.translateToDFSection(data);
+    //     console.log(form)
+    //     this.section = form
+    //   });
+  }
 
   ionViewDidLoad() {
-
+    // console.log('FormsPage ViewDidLoad')
   }
-
 }

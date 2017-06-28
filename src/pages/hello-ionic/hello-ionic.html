@@ -13,11 +13,13 @@
   <h3>Welcome Ionic!</h3>
 
   <p>
+    <button ion-button (click)="showFormSection()" color="danger">Dyn Section</button>
     <button ion-button (click)="showForms()">Forms</button>
     <button ion-button (click)="showStart()">Start</button>
     <button ion-button (click)="showAlert('ssss')">Click me</button>
     <button ion-button color="primary" menuToggle>Toggle Menu</button>
-    <button ion-button color="danger" menuToggle>Toggle Menu</button>
+    <button ion-button (click)="getData()" color="danger">Get Data</button>
+
   </p>
 
 
