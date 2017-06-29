@@ -118,8 +118,14 @@ export class Translator {
     return pages;
   }
 
-
-
+  CreateCEMSSection(data: any): SectionBase<any>{
+    const dfJson = this.createDFJson(data);
+    // return this.CreateDFSection(dfJson);
+    return;
+  }
+  createDFJson(data:any ):any {
+    console.log(data);
+  }
   CreateDFSection(data: any): SectionBase<any> {
     let sectionQuestions: QuestionBase<any>[] = [];
     console.log('Section have fields:', data)

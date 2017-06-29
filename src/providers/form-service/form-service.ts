@@ -13,8 +13,13 @@ export class FormServiceProvider {
     if (this.data) {
       return Promise.resolve(this.data);
     }
+    const url:string = 'http://localhost/way-to-api/yiicems/index.php?r=Login/ApiGetFormData';
+    const reqData = {
+      section: 'allMapBreathingList',
+      agency_id: '355bfcc5-baae-11e3-b9ed-842b2b4bbc99'
+    };
     return new Promise(resolve => {
-      this.http.get('http://localhost/way-to-api/yiicems/index.php?r=Login/ApiGetFormData')
+      this.http.post(url, JSON.stringify(reqData))
         .map(res => res.json())
         .subscribe(
           data => {

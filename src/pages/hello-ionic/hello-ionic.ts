@@ -10,11 +10,12 @@ import {GridFormWithSectionsPage} from '../grid-form-with-sections/grid-form-wit
 
 import {FormPagePage} from '../form-page/form-page';
 import {FormServiceProvider} from '../../providers/form-service/form-service';
+import {Translator} from '../../lib/df-translate';
 import {FormPagesPage} from "../form-pages/form-pages";
 @Component({
   selector: 'page-hello-ionic',
   templateUrl: 'hello-ionic.html',
-  providers: [FormServiceProvider]
+  providers: [FormServiceProvider, Translator]
 })
 export class HelloIonicPage {
   public data: any;
@@ -22,7 +23,8 @@ export class HelloIonicPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
-              public formServiceProvider: FormServiceProvider) {
+              public formServiceProvider: FormServiceProvider,
+              public translator: Translator) {
   }
 
   showForms() {
@@ -67,12 +69,14 @@ export class HelloIonicPage {
     this.formServiceProvider.load()
       .then(data => {
         this.data = data;
-        let alert = this.alertCtrl.create({
-          title: 'Got Data',
-          subTitle: this.data,
-          buttons: ['OK']
-        });
-        alert.present();
+
+        const form = this.translator.CreateCEMSSection(data.data);
+        // let alert = this.alertCtrl.create({
+        //   title: 'Got Data',
+        //   subTitle: JSON.stringify(form),
+        //   buttons: ['OK']
+        // });
+        // alert.present();
 
       });
 
