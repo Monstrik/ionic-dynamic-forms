@@ -6,6 +6,7 @@ import {StartPage} from '../start/start';
 import {FormsPage} from '../forms/forms';
 
 import {FormSectionPage} from '../form-section/form-section';
+import {LiveSectionPage} from '../live-section/live-section';
 import {GridFormWithSectionsPage} from '../grid-form-with-sections/grid-form-with-sections';
 
 import {FormPagePage} from '../form-page/form-page';
@@ -40,6 +41,9 @@ export class HelloIonicPage {
   }
   showDynamicForm(type:string){
     switch (type){
+      case 'liveSection':
+        this.navCtrl.push(LiveSectionPage);
+        break;
       case 'section':
         this.navCtrl.push(FormSectionPage);
         break;
@@ -66,6 +70,7 @@ export class HelloIonicPage {
 
 
   getData() {
+    //loadSection
     this.formServiceProvider.load()
       .then(data => {
         this.data = data;

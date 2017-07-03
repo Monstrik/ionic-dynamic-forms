@@ -3,6 +3,8 @@ import {DFSection} from './df-controls/df-section';
 import {DFDropDown} from './df-controls/df-drop-down';
 import {QuestionBase} from './question-base';
 import {DFDatebox} from './df-controls/df-datebox';
+import {DFTimebox} from './df-controls/df-timebox';
+
 import {DFTextbox} from './df-controls/df-textbox';
 import {DFButton} from './df-controls/df-button';
 import {DFToggle} from './df-controls/df-toggle';
@@ -17,7 +19,6 @@ export class Translator {
 
       case 'text':
       case 'email':
-      case 'time':
       case 'password': {
         return new DFTextbox({
           key: field.name,
@@ -38,6 +39,15 @@ export class Translator {
       }
       case 'date': {
         return new DFDatebox({
+          key: field.name,
+          label: field.label,
+          value: field.data,
+          required: field.required,
+          order: field.order
+        });
+      }
+      case 'time':{
+        return new DFTimebox({
           key: field.name,
           label: field.label,
           value: field.data,
@@ -86,16 +96,16 @@ export class Translator {
     }
   }
 
-  translateToDFSectionData(json: any): SectionBase<any> {
-    let sectionModel: any;
-    json.fields.forEach((field) => {
-      sectionModel[field.key] = field.value;
-    });
-    return sectionModel;
-  }
+  // translateToDFSectionData(json: any): SectionBase<any> {
+  //   let sectionModel: any;
+  //   json.fields.forEach((field) => {
+  //     sectionModel[field.key] = field.value;
+  //   });
+  //   return sectionModel;
+  // }
 
-  CreateDFPage(data: any): PageBase<any>{
-    let pageSections: SectionBase<any>[]=[];
+  CreateDFPage(data: any): PageBase<any> {
+    let pageSections: SectionBase<any>[] = [];
     console.log('Page have sections:', data.sections.length)
     data.sections.forEach((section) => {
       pageSections.push(this.CreateDFSection(section));
@@ -110,22 +120,24 @@ export class Translator {
 
   }
 
-  CreateDFPages(data: any): PageBase<any>[]{
-    let pages: PageBase<any>[]=[];
+  CreateDFPages(data: any): PageBase<any>[] {
+    let pages: PageBase<any>[] = [];
     data.forEach((page) => {
       pages.push(this.CreateDFPage(page));
     });
     return pages;
   }
 
-  CreateCEMSSection(data: any): SectionBase<any>{
+  CreateCEMSSection(data: any): SectionBase<any> {
     const dfJson = this.createDFJson(data);
     // return this.CreateDFSection(dfJson);
     return;
   }
-  createDFJson(data:any ):any {
+
+  createDFJson(data: any): any {
     console.log(data);
   }
+
   CreateDFSection(data: any): SectionBase<any> {
     let sectionQuestions: QuestionBase<any>[] = [];
     console.log('Section have fields:', data)
@@ -142,8 +154,7 @@ export class Translator {
 
   }
 
-
-  translateDBtoSection(data: string): SectionBase<any> {
+  translateDBtoSectionOld(data: string): SectionBase<any> {
 
 
     // ALLBUTTONSID,BUTTONID,BUTTONNAME,BUTTONTYPE,
@@ -180,6 +191,18 @@ export class Translator {
             sectionQuestions.push(new DFDatebox({
               key: field.name,
               type: 'date',
+              label: field.label,
+              value: field.data,
+              required: field.required,
+              order: field.order
+            }));
+            break;
+          }
+          case 'date': {
+            // console.log('c DFTextbox date for ' + field.label);
+            sectionQuestions.push(new DFTimebox({
+              key: field.name,
+              type: 'time',
               label: field.label,
               value: field.data,
               required: field.required,

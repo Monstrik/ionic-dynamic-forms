@@ -13,6 +13,13 @@
 
     </ion-datetime>
   </ion-item>
+  <ion-item *ngSwitchCase="'timebox'">
+    <ion-label floating [attr.for]="question.key">{{question.label}}</ion-label>
+    <ion-datetime [formControlName]="question.key" [id]="question.key" displayFormat="h:mm a MMM D, YYYY"
+                  pickerFormat="h:mm a">
+
+    </ion-datetime>
+  </ion-item>
   <ion-item *ngSwitchCase="'dropdown'">
     <ion-label [attr.for]="question.key">{{question.label}}</ion-label>
     <ion-select [formControlName]="question.key" [id]="question.key" [multiple]="question.multiple">

@@ -221,7 +221,7 @@ export class FormsDataProvider {
   // getDataFromServer(): QuestionBase<any>[] {
   //   this.http.get('http://localhost/way-to-api/yiicems/index.php?r=Login/ApiGetFormData')
   //     .map(res => res.json()).subscribe(data => {
-  //       return this.translateDBtoSection(data);
+  //       return this.translateDBtoSectionOld(data);
   //     });
   // }
 

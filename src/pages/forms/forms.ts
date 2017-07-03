@@ -26,7 +26,7 @@ export class FormsPage implements OnInit {
 
     this.provider.load()
       .then(data => {
-        this.section = this.translator.translateDBtoSection(data);
+        this.section = this.translator.translateDBtoSectionOld(data);
 
       });
 
